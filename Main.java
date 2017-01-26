@@ -23,7 +23,8 @@ public class Main {
 						}
 						if(sum(groupA) == sum(groupB)) {
 							print(groupA, groupB);
-							return;
+							//return;
+							System.out.println("__________");
 						}
 					}
 				}
@@ -70,9 +71,6 @@ public class Main {
 		int[] result = new int[subset.length];
 		for (int i = 0; i < subset.length; i++)
 			result[i] = input[subset[i]];
-		for(int i = 0; i < result.length; i++)
-			System.out.print(result[i] + ",");
-		System.out.println();
 		return result;
 	}
 
