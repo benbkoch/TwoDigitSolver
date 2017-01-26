@@ -13,14 +13,66 @@ public class Main {
 		for (int i = 1; i < 9; i++) {
 			allGroups.add(getSubsets(input, i));
 		}
+				
+		for(int i = 0; i < allGroups.size(); i++) {
+			for(int j = 0; j < allGroups.size(); j++) {
+				for(int[] groupA : allGroups.get(i)) {
+					for(int[] groupB : allGroups.get(j)) {
+						if(contains(groupA, groupB)) {
+							continue;
+						}
+						if(sum(groupA) == sum(groupB)) {
+							print(groupA, groupB);
+							return;
+						}
+					}
+				}
+			}
+		}
 
 		
+	}
+
+	private static boolean contains(int[] groupA, int[] groupB) {
+		for(int i = 0; i < groupA.length; i++) {
+			for(int j = 0; j < groupB.length; j++) {
+				if(groupA[i] == groupB[j]) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private static void print(int[] groupA, int[] groupB) {
+		System.out.print("[");
+		for(int i = 0; i < groupA.length; i++) {
+			System.out.print(groupA[i] + ",");
+		}
+		System.out.println("]");
+		System.out.print("[");
+		for(int i = 0; i < groupB.length; i++) {
+			System.out.print(groupB[i] + ",");
+		}
+		System.out.println("]");
+		
+	}
+
+	private static int sum(int[] group) {
+		int sum = 0;
+		for(int i = 0; i < group.length; i++) {
+			sum += group[i];
+		}
+		return sum;
 	}
 
 	static int[] getSubset(int[] input, int[] subset) {
 		int[] result = new int[subset.length];
 		for (int i = 0; i < subset.length; i++)
 			result[i] = input[subset[i]];
+		for(int i = 0; i < result.length; i++)
+			System.out.print(result[i] + ",");
+		System.out.println();
 		return result;
 	}
 
